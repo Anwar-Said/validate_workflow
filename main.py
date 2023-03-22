@@ -88,10 +88,10 @@ if __name__ == "__main__":
     path_to_wl = sys.argv[1]
     path_to_cli_jar =  sys.argv[2]
     if not os.path.exists(path_to_wl):
-        print("Path to workflow could not located! Please provide a valide path")
+        print("Path to workflow could not located! Please provide a valid path")
         sys.exit()
     if not os.path.exists(path_to_cli_jar):
-        print("Path to cli jar file could not located! Please provide a valide path")
+        print("Path to cli jar file could not located! Please provide a valid path")
         sys.exit()
     # parser = argparse.ArgumentParser()
     # parser.add_argument('--path_to_wl', type=str, default='None')
@@ -103,7 +103,6 @@ if __name__ == "__main__":
     if docker_key == None:
         print("Docker key could not be located! Pleaese provide a valid path to the directory of CWL")
         sys.exit()
-    
     command_login, command_logout,docker_pull,cmd_export = command_registry(path_to_cli_jar)
     interractive_command(command_login)
     interractive_command(docker_pull)
