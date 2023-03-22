@@ -55,7 +55,9 @@ def command_registry(path_to_cli_jar):
     docker_pull = 'docker pull '+docker_key
     return command_login, command_logout,docker_pull,cmd_export
 def prepare_cwl_command(path_to_wl):
-
+    if os.path.exists(path_to_wl+'/README.md'):
+        print("Workflow could not be located! Please provide a valide path to workflow directory!")
+        sys.exit()
     with open(path_to_wl+'/README.md', 'r') as file:
         readme_content = file.read()
     cmd_search = "cwltool\s+(.*)"
@@ -81,14 +83,16 @@ def prepare_cwl_command(path_to_wl):
     return updated_cwl_cmd
 
 
-    
-                    
-    
 if __name__ == "__main__":
     
     path_to_wl = sys.argv[1]
     path_to_cli_jar =  sys.argv[2]
-    
+    if not os.path.exists(path_to_wl):
+        print("Path to workflow could not located! Please provide a valide path")
+        sys.exit()
+    if not os.path.exists(path_to_cli_jar):
+        print("Path to cli jar file could not located! Please provide a valide path")
+        sys.exit()
     # parser = argparse.ArgumentParser()
     # parser.add_argument('--path_to_wl', type=str, default='None')
     # parser.add_argument('--experiment', type=str, default='fixed')
@@ -103,14 +107,13 @@ if __name__ == "__main__":
     command_login, command_logout,docker_pull,cmd_export = command_registry(path_to_cli_jar)
     interractive_command(command_login)
     interractive_command(docker_pull)
-    print("docker has been pulled")
+    print("Docker has been pulled successfully!")
     cwl_command = prepare_cwl_command(path_to_wl)
     all_commands = [cmd_export,"\n","cd "+path_to_wl, "\n",cwl_command]
     all_commands =''.join(all_commands)
     print("Environment created successfully! now running cwltool command", all_commands)
     interractive_command(all_commands)
-    print("CWL has been successfully executed!")
+    print("workflow has been executed successfully!")
     interractive_command(command_logout)
-
 
 
