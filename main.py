@@ -37,10 +37,13 @@ def get_docker_id(name):
                 if 'DockerRequirement' not in requirements.keys():
                     continue
                 else:
-                    docker_key = requirements.get("DockerRequirement").get("dockerPull")
+                    #docker_key = requirements.get("DockerRequirement").get("dockerPull")
+                    docker_key = requirements.get("DockerRequirement").values()
+                    for item in docker_key:
+                        docker_img = item
                     break
 
-    return docker_key
+    return docker_img
 def command_registry(path_to_cli_jar):
     cmd_export = "export LEAP_CLI_DIR="+path_to_cli_jar
     cmd_echo = 'echo $LEAP_CLI_DIR'
