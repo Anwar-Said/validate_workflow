@@ -13,14 +13,6 @@ python main.py path_to_workflow_folder path_to_leap_cli.jar_file
 
 
 
-"""
-This module automates cwl workflows validation. </br>
-
-Author: Anwar Said </br>
-Date: 22nd March 2023 </br>
-"""
-
-
 
 
 
