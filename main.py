@@ -58,7 +58,7 @@ def command_registry(path_to_cli_jar):
     docker_pull = 'docker pull '+docker_key
     return command_login, command_logout,docker_pull,cmd_export
 def prepare_cwl_command(path_to_wl):
-    if os.path.exists(path_to_wl+'/README.md'):
+    if not os.path.exists(path_to_wl+'/README.md'):
         print("Workflow could not be located! Please provide a valide path to workflow directory!")
         sys.exit()
     with open(path_to_wl+'/README.md', 'r') as file:
@@ -96,12 +96,13 @@ if __name__ == "__main__":
     if not os.path.exists(path_to_cli_jar):
         print("Path to cli jar file could not located! Please provide a valid path")
         sys.exit()
+    
     # parser = argparse.ArgumentParser()
     # parser.add_argument('--path_to_wl', type=str, default='None')
     # parser.add_argument('--experiment', type=str, default='fixed')
     # args = parser.parse_args()
     # path_to_wl, path_to_cli_jar = args.path_to_wl,args.path_to_cli_jar
-    print("The cogs are turning, and the cwl magic has begun!")
+    print("Validating the workflow!")
     docker_key = get_docker_id(path_to_wl)
     if docker_key == None:
         print("Docker key could not be located! Pleaese provide a valid path to the directory of CWL")
