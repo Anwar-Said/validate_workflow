@@ -1,0 +1,59 @@
+{
+  "cwlVersion": "v1.1",
+  "class": "Workflow",
+  "inputs": {
+    "PDPiD": {
+      "type": "string?",
+      "default": "65ad77dc-4139-41d3-ad82-85c8ed64ad77_4_0"
+    }
+  },
+  "outputs": {
+    "FileOutput": {
+      "type": "File",
+      "outputSource": "Run BART model/FileOutput"
+    }
+  },
+  "steps": {
+    "Run BART model": {
+      "run": "59b35bf0-69a6-15ef-4c61-5435e02bd6e5_step.cwl.json",
+      "in": {
+        "Input Files": "Combine Files/DirectoryOutput"
+      },
+      "out": [
+        "FileOutput"
+      ]
+    },
+    "Combine Files": {
+      "run": "c9c0b5db-98c7-1676-d27a-31942db38ef1_step.cwl.json",
+      "in": {
+        "HK_data": "Preprocess HK Data/FileOutput",
+        "Input Files": "FetchFromPDP/output"
+      },
+      "out": [
+        "DirectoryOutput"
+      ]
+    },
+    "FetchFromPDP": {
+      "run": "50871fe5-8cbe-3d2a-4056-93f67b90e41a_step.cwl.json",
+      "in": {
+        "ID": "PDPiD"
+      },
+      "out": [
+        "output"
+      ]
+    },
+    "Preprocess HK Data": {
+      "run": "d92a1b94-a602-2d20-132c-93d24095c297_step.cwl.json",
+      "in": {
+        "Input Files": "FetchFromPDP/output"
+      },
+      "out": [
+        "FileOutput"
+      ]
+    }
+  },
+  "requirements": {
+    "InlineJavascriptRequirement": {},
+    "SubworkflowFeatureRequirement": {}
+  }
+}

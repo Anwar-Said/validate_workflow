@@ -1,0 +1,445 @@
+[1] "Working Directory set to:"
+[1] "/WJIiyY/r_output"
+bartMachine initializing with 50 trees...
+bartMachine vars checked...
+bartMachine java init...
+bartMachine factors created...
+bartMachine before preprocess...
+bartMachine after preprocess... 41 total features...
+warning: cannot use MSE of linear model for s_sq_y if p > n. bartMachine will use sample var(y) instead.
+bartMachine sigsq estimated...
+bartMachine training data finalized...
+Now building bartMachine for regression...Missing data feature ON. 
+building BART with mem-cache speedup...
+Iteration 100/1250
+Iteration 200/1250
+Iteration 300/1250
+Iteration 400/1250
+Iteration 500/1250
+Iteration 600/1250
+Iteration 700/1250
+Iteration 800/1250
+Iteration 900/1250
+Iteration 1000/1250
+Iteration 1100/1250
+Iteration 1200/1250
+done building BART in 0.174 sec 
+
+burning and aggregating chains from all threads... done
+evaluating in sample data...done
+bartMachine v1.2.6 for regression
+
+Missing data feature ON
+training data n = 17 and p = 40 
+built in 0.3 secs on 1 core, 50 trees, 250 burn-in and 1000 post. samples
+
+sigsq est for y beforehand: 15.985 
+avg sigsq estimate after burn-in: 11.29064 
+
+in-sample statistics:
+ L1 = 41.06 
+ L2 = 146.21 
+ rmse = 2.93 
+ Pseudo-Rsq = 0.4283
+p-val for shapiro-wilk test of normality of residuals: 0.45016 
+p-val for zero-mean noise: 0.84181 
+
+bartMachine initializing with 50 trees...
+bartMachine vars checked...
+bartMachine java init...
+bartMachine factors created...
+bartMachine before preprocess...
+bartMachine after preprocess... 41 total features...
+warning: cannot use MSE of linear model for s_sq_y if p > n. bartMachine will use sample var(y) instead.
+bartMachine sigsq estimated...
+bartMachine training data finalized...
+Now building bartMachine for regression...Missing data feature ON. 
+building BART with mem-cache speedup...
+Iteration 100/1250
+Iteration 200/1250
+Iteration 300/1250
+Iteration 400/1250
+Iteration 500/1250
+Iteration 600/1250
+Iteration 700/1250
+Iteration 800/1250
+Iteration 900/1250
+Iteration 1000/1250
+Iteration 1100/1250
+Iteration 1200/1250
+done building BART in 0.106 sec 
+
+burning and aggregating chains from all threads... done
+evaluating in sample data...done
+bartMachine v1.2.6 for regression
+
+Missing data feature ON
+training data n = 17 and p = 40 
+built in 0.2 secs on 1 core, 50 trees, 250 burn-in and 1000 post. samples
+
+sigsq est for y beforehand: 1.289 
+avg sigsq estimate after burn-in: 0.58847 
+
+in-sample statistics:
+ L1 = 8.88 
+ L2 = 6.64 
+ rmse = 0.62 
+ Pseudo-Rsq = 0.6783
+p-val for shapiro-wilk test of normality of residuals: 0.30534 
+p-val for zero-mean noise: 0.89258 
+
+bartMachine initializing with 50 trees...
+bartMachine vars checked...
+bartMachine java init...
+bartMachine factors created...
+bartMachine before preprocess...
+bartMachine after preprocess... 41 total features...
+warning: cannot use MSE of linear model for s_sq_y if p > n. bartMachine will use sample var(y) instead.
+bartMachine sigsq estimated...
+bartMachine training data finalized...
+Now building bartMachine for regression...Missing data feature ON. 
+building BART with mem-cache speedup...
+Iteration 100/1250
+Iteration 200/1250
+Iteration 300/1250
+Iteration 400/1250
+Iteration 500/1250
+Iteration 600/1250
+Iteration 700/1250
+Iteration 800/1250
+Iteration 900/1250
+Iteration 1000/1250
+Iteration 1100/1250
+Iteration 1200/1250
+done building BART in 0.086 sec 
+
+burning and aggregating chains from all threads... done
+evaluating in sample data...done
+bartMachine v1.2.6 for regression
+
+Missing data feature ON
+training data n = 18 and p = 40 
+built in 0.2 secs on 1 core, 50 trees, 250 burn-in and 1000 post. samples
+
+sigsq est for y beforehand: 16.369 
+avg sigsq estimate after burn-in: 10.16467 
+
+in-sample statistics:
+ L1 = 41.31 
+ L2 = 141.02 
+ rmse = 2.8 
+ Pseudo-Rsq = 0.4933
+p-val for shapiro-wilk test of normality of residuals: 0.27495 
+p-val for zero-mean noise: 0.76712 
+
+bartMachine initializing with 50 trees...
+bartMachine vars checked...
+bartMachine java init...
+bartMachine factors created...
+bartMachine before preprocess...
+bartMachine after preprocess... 41 total features...
+warning: cannot use MSE of linear model for s_sq_y if p > n. bartMachine will use sample var(y) instead.
+bartMachine sigsq estimated...
+bartMachine training data finalized...
+Now building bartMachine for regression...Missing data feature ON. 
+building BART with mem-cache speedup...
+Iteration 100/1250
+Iteration 200/1250
+Iteration 300/1250
+Iteration 400/1250
+Iteration 500/1250
+Iteration 600/1250
+Iteration 700/1250
+Iteration 800/1250
+Iteration 900/1250
+Iteration 1000/1250
+Iteration 1100/1250
+Iteration 1200/1250
+done building BART in 0.085 sec 
+
+burning and aggregating chains from all threads... done
+evaluating in sample data...done
+bartMachine v1.2.6 for regression
+
+Missing data feature ON
+training data n = 16 and p = 40 
+built in 0.2 secs on 1 core, 50 trees, 250 burn-in and 1000 post. samples
+
+sigsq est for y beforehand: 1.492 
+avg sigsq estimate after burn-in: 0.38298 
+
+in-sample statistics:
+ L1 = 5.64 
+ L2 = 2.86 
+ rmse = 0.42 
+ Pseudo-Rsq = 0.8721
+p-val for shapiro-wilk test of normality of residuals: 0.64455 
+p-val for zero-mean noise: 0.87779 
+
+bartMachine initializing with 50 trees...
+bartMachine vars checked...
+bartMachine java init...
+bartMachine factors created...
+bartMachine before preprocess...
+bartMachine after preprocess... 41 total features...
+warning: cannot use MSE of linear model for s_sq_y if p > n. bartMachine will use sample var(y) instead.
+bartMachine sigsq estimated...
+bartMachine training data finalized...
+Now building bartMachine for regression...Missing data feature ON. 
+building BART with mem-cache speedup...
+Iteration 100/1250
+Iteration 200/1250
+Iteration 300/1250
+Iteration 400/1250
+Iteration 500/1250
+Iteration 600/1250
+Iteration 700/1250
+Iteration 800/1250
+Iteration 900/1250
+Iteration 1000/1250
+Iteration 1100/1250
+Iteration 1200/1250
+done building BART in 0.096 sec 
+
+burning and aggregating chains from all threads... done
+evaluating in sample data...done
+bartMachine v1.2.6 for regression
+
+Missing data feature ON
+training data n = 18 and p = 40 
+built in 0.2 secs on 1 core, 50 trees, 250 burn-in and 1000 post. samples
+
+sigsq est for y beforehand: 16.026 
+avg sigsq estimate after burn-in: 13.16908 
+
+in-sample statistics:
+ L1 = 46.92 
+ L2 = 180.75 
+ rmse = 3.17 
+ Pseudo-Rsq = 0.3366
+p-val for shapiro-wilk test of normality of residuals: 0.09402 
+p-val for zero-mean noise: 0.77848 
+
+bartMachine initializing with 50 trees...
+bartMachine vars checked...
+bartMachine java init...
+bartMachine factors created...
+bartMachine before preprocess...
+bartMachine after preprocess... 41 total features...
+warning: cannot use MSE of linear model for s_sq_y if p > n. bartMachine will use sample var(y) instead.
+bartMachine sigsq estimated...
+bartMachine training data finalized...
+Now building bartMachine for regression...Missing data feature ON. 
+building BART with mem-cache speedup...
+Iteration 100/1250
+Iteration 200/1250
+Iteration 300/1250
+Iteration 400/1250
+Iteration 500/1250
+Iteration 600/1250
+Iteration 700/1250
+Iteration 800/1250
+Iteration 900/1250
+Iteration 1000/1250
+Iteration 1100/1250
+Iteration 1200/1250
+done building BART in 0.077 sec 
+
+burning and aggregating chains from all threads... done
+evaluating in sample data...done
+bartMachine v1.2.6 for regression
+
+Missing data feature ON
+training data n = 19 and p = 40 
+built in 0.2 secs on 1 core, 50 trees, 250 burn-in and 1000 post. samples
+
+sigsq est for y beforehand: 1.397 
+avg sigsq estimate after burn-in: 0.57322 
+
+in-sample statistics:
+ L1 = 9.54 
+ L2 = 6.97 
+ rmse = 0.61 
+ Pseudo-Rsq = 0.7228
+p-val for shapiro-wilk test of normality of residuals: 0.18233 
+p-val for zero-mean noise: 0.97481 
+
+bartMachine initializing with 50 trees...
+bartMachine vars checked...
+bartMachine java init...
+bartMachine factors created...
+bartMachine before preprocess...
+bartMachine after preprocess... 41 total features...
+warning: cannot use MSE of linear model for s_sq_y if p > n. bartMachine will use sample var(y) instead.
+bartMachine sigsq estimated...
+bartMachine training data finalized...
+Now building bartMachine for regression...Missing data feature ON. 
+building BART with mem-cache speedup...
+Iteration 100/1250
+Iteration 200/1250
+Iteration 300/1250
+Iteration 400/1250
+Iteration 500/1250
+Iteration 600/1250
+Iteration 700/1250
+Iteration 800/1250
+Iteration 900/1250
+Iteration 1000/1250
+Iteration 1100/1250
+Iteration 1200/1250
+done building BART in 0.107 sec 
+
+burning and aggregating chains from all threads... done
+evaluating in sample data...done
+bartMachine v1.2.6 for regression
+
+Missing data feature ON
+training data n = 17 and p = 40 
+built in 0.2 secs on 1 core, 50 trees, 250 burn-in and 1000 post. samples
+
+sigsq est for y beforehand: 10.882 
+avg sigsq estimate after burn-in: 6.59286 
+
+in-sample statistics:
+ L1 = 31.05 
+ L2 = 83.11 
+ rmse = 2.21 
+ Pseudo-Rsq = 0.5227
+p-val for shapiro-wilk test of normality of residuals: 0.30524 
+p-val for zero-mean noise: 0.8052 
+
+bartMachine initializing with 50 trees...
+bartMachine vars checked...
+bartMachine java init...
+bartMachine factors created...
+bartMachine before preprocess...
+bartMachine after preprocess... 41 total features...
+warning: cannot use MSE of linear model for s_sq_y if p > n. bartMachine will use sample var(y) instead.
+bartMachine sigsq estimated...
+bartMachine training data finalized...
+Now building bartMachine for regression...Missing data feature ON. 
+building BART with mem-cache speedup...
+Iteration 100/1250
+Iteration 200/1250
+Iteration 300/1250
+Iteration 400/1250
+Iteration 500/1250
+Iteration 600/1250
+Iteration 700/1250
+Iteration 800/1250
+Iteration 900/1250
+Iteration 1000/1250
+Iteration 1100/1250
+Iteration 1200/1250
+done building BART in 0.077 sec 
+
+burning and aggregating chains from all threads... done
+evaluating in sample data...done
+bartMachine v1.2.6 for regression
+
+Missing data feature ON
+training data n = 18 and p = 40 
+built in 0.2 secs on 1 core, 50 trees, 250 burn-in and 1000 post. samples
+
+sigsq est for y beforehand: 1.292 
+avg sigsq estimate after burn-in: 0.49388 
+
+in-sample statistics:
+ L1 = 7.77 
+ L2 = 5.39 
+ rmse = 0.55 
+ Pseudo-Rsq = 0.7548
+p-val for shapiro-wilk test of normality of residuals: 0.37149 
+p-val for zero-mean noise: 0.92096 
+
+bartMachine initializing with 50 trees...
+bartMachine vars checked...
+bartMachine java init...
+bartMachine factors created...
+bartMachine before preprocess...
+bartMachine after preprocess... 41 total features...
+warning: cannot use MSE of linear model for s_sq_y if p > n. bartMachine will use sample var(y) instead.
+bartMachine sigsq estimated...
+bartMachine training data finalized...
+Now building bartMachine for regression...Missing data feature ON. 
+building BART with mem-cache speedup...
+Iteration 100/1250
+Iteration 200/1250
+Iteration 300/1250
+Iteration 400/1250
+Iteration 500/1250
+Iteration 600/1250
+Iteration 700/1250
+Iteration 800/1250
+Iteration 900/1250
+Iteration 1000/1250
+Iteration 1100/1250
+Iteration 1200/1250
+done building BART in 0.073 sec 
+
+burning and aggregating chains from all threads... done
+evaluating in sample data...done
+bartMachine v1.2.6 for regression
+
+Missing data feature ON
+training data n = 18 and p = 40 
+built in 0.2 secs on 1 core, 50 trees, 250 burn-in and 1000 post. samples
+
+sigsq est for y beforehand: 12.618 
+avg sigsq estimate after burn-in: 7.55969 
+
+in-sample statistics:
+ L1 = 30.95 
+ L2 = 89.1 
+ rmse = 2.22 
+ Pseudo-Rsq = 0.5846
+p-val for shapiro-wilk test of normality of residuals: 0.16039 
+p-val for zero-mean noise: 0.72523 
+
+bartMachine initializing with 50 trees...
+bartMachine vars checked...
+bartMachine java init...
+bartMachine factors created...
+bartMachine before preprocess...
+bartMachine after preprocess... 41 total features...
+warning: cannot use MSE of linear model for s_sq_y if p > n. bartMachine will use sample var(y) instead.
+bartMachine sigsq estimated...
+bartMachine training data finalized...
+Now building bartMachine for regression...Missing data feature ON. 
+building BART with mem-cache speedup...
+Iteration 100/1250
+Iteration 200/1250
+Iteration 300/1250
+Iteration 400/1250
+Iteration 500/1250
+Iteration 600/1250
+Iteration 700/1250
+Iteration 800/1250
+Iteration 900/1250
+Iteration 1000/1250
+Iteration 1100/1250
+Iteration 1200/1250
+done building BART in 0.074 sec 
+
+burning and aggregating chains from all threads... done
+evaluating in sample data...done
+bartMachine v1.2.6 for regression
+
+Missing data feature ON
+training data n = 18 and p = 40 
+built in 0.2 secs on 1 core, 50 trees, 250 burn-in and 1000 post. samples
+
+sigsq est for y beforehand: 0.957 
+avg sigsq estimate after burn-in: 0.52741 
+
+in-sample statistics:
+ L1 = 9.31 
+ L2 = 7.14 
+ rmse = 0.63 
+ Pseudo-Rsq = 0.5609
+p-val for shapiro-wilk test of normality of residuals: 0.31843 
+p-val for zero-mean noise: 0.92113 
+
+      mae    mse  rmse     srs     sst rsquared
+phq  3.16 14.804 3.848 325.699 299.318   -0.088
+pvss 0.89  1.127 1.062  24.803  26.707    0.071

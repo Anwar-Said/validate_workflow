@@ -1,0 +1,36 @@
+{
+  "cwlVersion": "v1.1",
+  "class": "CommandLineTool",
+  "requirements": {
+    "InlineJavascriptRequirement": {},
+    "DockerRequirement": {
+      "dockerPull": "akre96/ucla_pipeline_1:latest"
+    },
+    "ShellCommandRequirement": {},
+    "InitialWorkDirRequirement": {
+      "listing": [
+        {
+          "entry": "$(inputs['Input Files'])",
+          "writable": true
+        }
+      ]
+    }
+  },
+  "inputs": {
+    "Input Files": "Directory"
+  },
+  "outputs": {
+    "FileOutput": {
+      "type": "File",
+      "outputBinding": {
+        "glob": "output.txt"
+      }
+    }
+  },
+  "arguments": [
+    {
+      "shellQuote": false,
+      "valueFrom": "ln -s $(inputs['Input Files'].path) input_files\nln -s ./app/* ./\nRscript /app/bart_modeling_WL_pipeline1.r $(inputs['Input Files'].path) > output.txt"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "cwlVersion": "v1.1",
+  "class": "CommandLineTool",
+  "requirements": {
+    "InlineJavascriptRequirement": {},
+    "DockerRequirement": {
+      "dockerPull": "akre96/ucla_pipeline_1:latest"
+    },
+    "ShellCommandRequirement": {},
+    "InitialWorkDirRequirement": {
+      "listing": [
+        {
+          "entry": "$(inputs['HK_data'])",
+          "writable": true
+        },
+        {
+          "entry": "$(inputs['Input Files'])",
+          "writable": true
+        }
+      ]
+    }
+  },
+  "inputs": {
+    "HK_data": "File",
+    "Input Files": "Directory"
+  },
+  "outputs": {
+    "DirectoryOutput": {
+      "type": "Directory",
+      "outputBinding": {
+        "glob": "$(runtime.outdir)/r_output"
+      }
+    }
+  },
+  "arguments": [
+    {
+      "shellQuote": false,
+      "valueFrom": "ln -s $(inputs['Input Files'].path) input_files\nln -s $(inputs['HK_data'].path) $(inputs['Input Files'].path)/paee_sleep_W0toW1.csv\nln -s ./app/* ./\nRscript /app/combine_data_WL_pipeline1.r  $(inputs['Input Files'].path) $(runtime.outdir)/r_output"
+    }
+  ]
+}
