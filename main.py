@@ -18,12 +18,13 @@ import subprocess
 import json
 import re
 import argparse
-
+import requests
 class Validation:
     def __init__(self):
         self.root = tk.Tk()
         # self.root = root
         self.root.geometry("700x500")
+        self.log_file = open("log.log", "a")
         self.root.title("Workflow Validation")
         self.style = ttk.Style()
         self.style.theme_use('default')
@@ -46,6 +47,7 @@ class Validation:
         self.var_docker = tk.BooleanVar()
         self.var_dep = tk.BooleanVar()
         self.var_success = tk.BooleanVar()
+        self.download_invoked = False
 
         self.local_env = tk.Checkbutton(self.root, text="Local Environment",font=custom_font,image=self.default_image, compound="left",selectimage=self.checked_image, indicatoron=False,variable=self.var_local)
         self.data_pull = tk.Checkbutton(self.root, text="Data pull",font=custom_font,image=self.default_image, compound="left",selectimage=self.checked_image, indicatoron=False,variable=self.var_data)
@@ -80,72 +82,105 @@ class Validation:
     def validate_workflow(self):
         home_dir = os.path.expanduser('~')
         home_dir = home_dir+"/leap_cli"
-        if not os.path.exists(home_dir) and os.access(home_dir, os.R_OK):
-            print("to be implemented - download leap cli and set path")
-        
-        else:
-            self.log.insert(tk.END,"Local environment has been created successfully! \n \n")
-            self.local_env.select()
-            self.root.update()
-        self.log.insert(tk.END,"Executing Workflow ... \n \n")
+        file_name = "leap_cli.jar"
+        if not os.path.exists(home_dir):
+            os.makedirs(home_dir)
+            url = "https://vanderbilt365-my.sharepoint.com/:u:/g/personal/yogesh_d_barve_vanderbilt_edu/EVKzUfgrtJ9HqxynEzXqDScBV768c7no5s7twywXdFzJ0g?e=cg6gN9"
+            os.system(f"wget {url} -O {os.path.join(home_dir, file_name)}")
+            print("file downloaded successfully!")
+            if os.path.exists(home_dir):
+                with open(os.path.expanduser('~/.bashrc'), 'a') as bashrc:
+                    bashrc.write(f'export LEAP_CLI_DIR="{home_dir}"\n')
+                    print("path exported to bashrc!")
+
+        # if os.access(home_dir, os.R_OK):
+        msg = "Local environment has been created successfully! \n"
+        self.log_file.write(msg) 
+        self.log.insert(tk.END,msg)
+        self.local_env.select()
+        self.root.update()
+        print("local environment created successfully!")
+        msg = "Executing Workflow ... \n"
+        self.log.insert(tk.END,msg)
+        self.log_file.write(msg) 
         # self.local_env.select()
         self.progress_bar['value'] = 10
         self.root.update()
         cwl_command = self.prepare_cwl_command()
-        # self.interractive_command(cwl_command)  
+        self.interractive_command(cwl_command)  
 
     def interractive_command(self,command):
-        log_file = open("log.log", "a")
+        
         process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         # stdout, stderr = process.communicate()
         log = ""
         while True:
             line = process.stdout.readline().decode()
-            log_file.write(line)
+            
             print(line)
             if line == "" and process.poll() is not None:
+                self.log_file.close()
                 break
             log += line
             flag = self.parse_log(log)
             if flag:
+                self.log_file.close()
                 break
-        log_file.close()
+        
     def parse_log(self,log):
         flag = False
         if "Error reading data from file:" in log:
-            self.log.insert(tk.END, "Cannot download data from DATALAKE! please ensure that the data is linked correctly \n \n")
+            msg = "Cannot download data from DATALAKE! please ensure that the data has been linked correctly \n \n"
+            self.log.insert(tk.END,msg)
             self.data_pull.configure(image = self.unchecked_image)
             self.root.update()
             flag = True
+            self.log_file.write(msg)
+        if "Download Command Invoked" in log and not self.download_invoked:
+            msg = "Data download command invoked... \n"
+            self.log.insert(tk.END,msg)
+            self.download_invoked = True
+            self.log_file.write(msg)
 
         if not self.var_data.get() and "Download Operation Completed" in log:
-            self.log.insert(tk.END, "Data download operation completed! \n \n")
+            msg = "Data download operation completed! \n"
+            self.log.insert(tk.END,msg)
             self.data_pull.select()
             self.progress_bar['value'] = 40
             self.root.update()
+            self.log_file.write(msg)
             
         if "Docker is required to run this tool" in log:
-            self.log.insert(tk.END, "Docker is required! Please check the docker is running on local machine and the docker image is up to date.\n \n")
+            msg = "Docker is required! Please check the docker is running on local machine and the docker image is up to date.\n"
+            self.log.insert(tk.END, msg)
             self.docker_pull.configure(image = self.unchecked_image)
             self.root.update()
             flag = True
+            self.log_file.write(msg)
+            self.log_file.close()
         if "Pulling from" in log:
-            self.log.insert(tk.END, "Pulling docker image ... \n \n")
+            msg =  "Pulling docker image ... \n"
+            self.log.insert(tk.END,msg)
             # self.docker_pull.configure(image = self.unchecked_image)
             self.root.update()
+            self.log_file.write(msg)
         if not self.var_docker.get() and  "Pull complete" in log:
-            self.log.insert(tk.END, "Image has been pulled successfully! \n \n")
+            msg = "Image has been pulled successfully! \n"
+            self.log.insert(tk.END, msg)
             # self.docker_pull.configure(image = self.checked_image)
             self.docker_pull.select()
             self.progress_bar['value'] = 70
             self.root.update()
+            self.log_file.write(msg)
 
         if not self.var_docker.get() and "[job Preprocess HK Data]" in log:
-            self.log.insert(tk.END, "Docker image is up to date! \n \n")
+            msg = "Docker image is up to date! \n"
+            self.log.insert(tk.END, msg)
             # self.docker_pull.configure(image = self.checked_image)
             self.docker_pull.select()
             self.progress_bar['value'] = 70
             self.root.update()
+            self.log_file.write(msg)
         if "Final process status is permanentFail" in log:
             message = "Workflow execution failed! Please make sure that the workflow has corretly been built and met all the dependencies (input, output, the docker image is up to date). \n \n"
             self.log.insert(tk.END,message)
@@ -154,13 +189,17 @@ class Validation:
             self.docker_pull.configure(image = self.unchecked_image)
             self.success.configure(image = self.unchecked_image)
             self.root.update()
+            self.log_file.write(message)
+            
         if "Final process status is success" in log:
-            self.log.insert(tk.END, "Workflow has been executed successfully! \n \n")
+            msg = "Workflow has been executed successfully! \n"
+            self.log.insert(tk.END,msg)
             # self.docker_pull.configure(image = self.checked_image)
             self.unmet_dep.select()
             self.success.select()
             self.progress_bar['value'] = 100
             self.root.update()
+            self.log_file.write(log)
         return flag 
             
 
