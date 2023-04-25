@@ -25,6 +25,7 @@ class Validation:
         # self.root = root
         self.root.geometry("700x500")
         self.log_file = open("log.log", "a")
+        self.console_output = ""
         self.root.title("Workflow Validation")
         self.style = ttk.Style()
         self.style.theme_use('default')
@@ -114,9 +115,10 @@ class Validation:
         process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         # stdout, stderr = process.communicate()
         log = ""
+        
         while True:
             line = process.stdout.readline().decode()
-            
+            self.console_output += line 
             print(line)
             if line == "" and process.poll() is not None:
                 self.log_file.close()
@@ -173,7 +175,7 @@ class Validation:
             self.root.update()
             self.log_file.write(msg)
 
-        if not self.var_docker.get() and "[job Preprocess HK Data]" in log:
+        if not self.var_docker.get() and "docker \\" in log:
             msg = "Docker image is up to date! \n"
             self.log.insert(tk.END, msg)
             # self.docker_pull.configure(image = self.checked_image)
@@ -182,14 +184,15 @@ class Validation:
             self.root.update()
             self.log_file.write(msg)
         if "Final process status is permanentFail" in log:
-            message = "Workflow execution failed! Please make sure that the workflow has corretly been built and met all the dependencies (input, output, the docker image is up to date). \n \n"
+            message = "Workflow execution was unsuccessful! Please view the log file in the same directory for further information. \n \n"
             self.log.insert(tk.END,message)
             # self.docker_pull.configure(image = self.checked_image)
             self.unmet_dep.configure(image = self.unchecked_image)
             self.docker_pull.configure(image = self.unchecked_image)
             self.success.configure(image = self.unchecked_image)
             self.root.update()
-            self.log_file.write(message)
+            self.log_file.write("Error information is provided below ================================\n")
+            self.log_file.write(self.console_output)
             
         if "Final process status is success" in log:
             msg = "Workflow has been executed successfully! \n"
@@ -199,7 +202,7 @@ class Validation:
             self.success.select()
             self.progress_bar['value'] = 100
             self.root.update()
-            self.log_file.write(log)
+            # self.log_file.write(log)
         return flag 
             
 
