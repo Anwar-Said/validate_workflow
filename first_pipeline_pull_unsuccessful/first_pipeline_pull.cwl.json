@@ -1,0 +1,50 @@
+{
+  "cwlVersion": "v1.1",
+  "class": "Workflow",
+  "inputs": {
+    "PDPiD": {
+      "type": "string?",
+      "default": "65ad77dc-4139-41d3-ad82-85c8ed64ad77_4_0"
+    }
+  },
+  "outputs": {
+    "FileOutput": {
+      "type": "File",
+      "outputSource": "RunModel/FileOutput"
+    }
+  },
+  "steps": {
+    "RunModel": {
+      "run": "62b96ac7-4062-3f3b-5879-283fe7625b7b_step.cwl.json",
+      "in": {
+        "Input Data": "FetchFromPDP/output",
+        "HK_data": "Preproccess HealthKit/FileOutput"
+      },
+      "out": [
+        "FileOutput"
+      ]
+    },
+    "FetchFromPDP": {
+      "run": "437fc002-c10b-ba3c-7d10-63b2aad3422b_step.cwl.json",
+      "in": {
+        "ID": "PDPiD"
+      },
+      "out": [
+        "output"
+      ]
+    },
+    "Preproccess HealthKit": {
+      "run": "58b03652-41b6-31d7-0719-dd5533fd78aa_step.cwl.json",
+      "in": {
+        "Input Files": "FetchFromPDP/output"
+      },
+      "out": [
+        "FileOutput"
+      ]
+    }
+  },
+  "requirements": {
+    "InlineJavascriptRequirement": {},
+    "SubworkflowFeatureRequirement": {}
+  }
+}

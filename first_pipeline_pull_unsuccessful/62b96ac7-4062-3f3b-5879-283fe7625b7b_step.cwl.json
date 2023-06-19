@@ -1,0 +1,41 @@
+{
+  "cwlVersion": "v1.1",
+  "class": "CommandLineTool",
+  "requirements": {
+    "InlineJavascriptRequirement": {},
+    "DockerRequirement": {
+      "dockerPull": "akre96/ucla_pipeline_1:latest"
+    },
+    "ShellCommandRequirement": {},
+    "InitialWorkDirRequirement": {
+      "listing": [
+        {
+          "entry": "$(inputs['HK_data'])",
+          "writable": true
+        },
+        {
+          "entry": "$(inputs['Input Data'])",
+          "writable": true
+        }
+      ]
+    }
+  },
+  "inputs": {
+    "HK_data": "File",
+    "Input Data": "Directory"
+  },
+  "outputs": {
+    "FileOutput": {
+      "type": "File",
+      "outputBinding": {
+        "glob": "output.txt"
+      }
+    }
+  },
+  "arguments": [
+    {
+      "shellQuote": false,
+      "valueFrom": "ln -s $(inputs['Input Data'].path) input_files\nln -s $(inputs['HK_data'].path) $(inputs['Input Files'].path)/paee_sleep_W0toW1.csv\nln -s ./app/* ./\nRscript /app/combined_scripts_WL_for_Samir_02_09_2023-SA.R  $(inputs['Input Files'].path) > output.txt"
+    }
+  ]
+}

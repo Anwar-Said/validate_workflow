@@ -9,7 +9,7 @@ Date: 22nd March 2023
 import tkinter as tk
 from tkinter import ttk
 import threading
-import time
+import datetime
 # from utils import *
 import logging
 import os
@@ -19,12 +19,14 @@ import json
 import re
 import argparse
 import requests
+
 class Validation:
     def __init__(self):
         self.root = tk.Tk()
         # self.root = root
         self.root.geometry("700x500")
-        self.log_file = open("log.log", "a")
+        self.cwd = os.path.dirname(os.path.abspath(__file__))
+        self.log_file = open(self.cwd+"/workflow.log", "w")
         self.console_output = ""
         self.root.title("Workflow Validation")
         self.style = ttk.Style()
@@ -40,9 +42,9 @@ class Validation:
         # self.unchecked_image = tk.PhotoImage(file="validate_workflow-main/icons/uncheck.png",height=27, width=27)
         # self.default_image = tk.PhotoImage(file="validate_workflow-main/icons/checkbox1.png",height=27, width=27)
 
-        self.checked_image = tk.PhotoImage(file="icons/correct.png",height=27, width=27)
-        self.unchecked_image = tk.PhotoImage(file="icons/uncheck.png",height=27, width=27)
-        self.default_image = tk.PhotoImage(file="icons/checkbox1.png",height=27, width=27)
+        self.checked_image = tk.PhotoImage(file=self.cwd+"/icons/correct.png",height=27, width=27)
+        self.unchecked_image = tk.PhotoImage(file=self.cwd+"/icons/uncheck.png",height=27, width=27)
+        self.default_image = tk.PhotoImage(file=self.cwd+"/icons/checkbox1.png",height=27, width=27)
         self.var_local = tk.BooleanVar()
         self.var_data = tk.BooleanVar()
         self.var_docker = tk.BooleanVar()
@@ -81,6 +83,19 @@ class Validation:
         self.root.mainloop()
 
     def validate_workflow(self):
+        msg = "Workflow Validation Report \n"
+        self.log_file.write(msg) 
+        self.log.insert(tk.END,msg)
+        current_time = datetime.datetime.now()
+        msg = f"Date: {current_time}\n\n"
+        self.log_file.write(msg) 
+        msg = "==================================================\n\n"
+        self.log_file.write(msg)
+        msg = "Step 1: Local environment \n"
+        self.log_file.write(msg)
+        msg = "Starting execution of Step 1...\n"
+        self.log_file.write(msg)
+        self.log.insert(tk.END,msg)
         home_dir = os.path.expanduser('~')
         home_dir = home_dir+"/leap_cli"
         file_name = "leap_cli.jar"
@@ -95,15 +110,19 @@ class Validation:
                     print("path exported to bashrc!")
 
         # if os.access(home_dir, os.R_OK):
-        msg = "Local environment has been created successfully! \n"
-        self.log_file.write(msg) 
+        msg = "Step 1: Local environment successfully configured \n\n"
+        self.log_file.write(msg)
+
         self.log.insert(tk.END,msg)
         self.local_env.select()
         self.root.update()
-        print("local environment created successfully!")
-        msg = "Executing Workflow ... \n"
+        print(msg)
+
+        msg = "Step 2: Download data \n"
+        self.log_file.write(msg)
+        # msg = "Executing Workflow ... \n"
         self.log.insert(tk.END,msg)
-        self.log_file.write(msg) 
+        
         # self.local_env.select()
         self.progress_bar['value'] = 10
         self.root.update()
@@ -139,13 +158,14 @@ class Validation:
             flag = True
             self.log_file.write(msg)
         if "Download Command Invoked" in log and not self.download_invoked:
-            msg = "Data download command invoked... \n"
+            msg = "Starting data download... \n"
+            self.log_file.write(msg) 
             self.log.insert(tk.END,msg)
             self.download_invoked = True
-            self.log_file.write(msg)
+            
 
         if not self.var_data.get() and "Download Operation Completed" in log:
-            msg = "Data download operation completed! \n"
+            msg = "Step 2: Data download operation completed! \n\n"
             self.log.insert(tk.END,msg)
             self.data_pull.select()
             self.progress_bar['value'] = 40
@@ -161,13 +181,33 @@ class Validation:
             self.log_file.write(msg)
             self.log_file.close()
         if "Pulling from" in log:
-            msg =  "Pulling docker image ... \n"
+            msg = "Step 3: Pull docker \n"
             self.log.insert(tk.END,msg)
+            self.log_file.write(msg)
+            msg =  "Starting pulling the docker ... \n"
+            self.log.insert(tk.END,msg)
+            self.log_file.write(msg)
             # self.docker_pull.configure(image = self.unchecked_image)
             self.root.update()
             self.log_file.write(msg)
         if not self.var_docker.get() and  "Pull complete" in log:
-            msg = "Image has been pulled successfully! \n"
+            msg = "Step 3: docker pulled successfully! \n\n"
+            self.log.insert(tk.END, msg)
+            self.log_file.write(msg)
+            # self.docker_pull.configure(image = self.checked_image)
+            self.docker_pull.select()
+            self.progress_bar['value'] = 70
+            self.root.update()
+            
+
+        if not self.var_docker.get() and "docker \\" in log:
+            msg = "Step 3: Pull docker \n"
+            self.log.insert(tk.END,msg)
+            self.log_file.write(msg)
+            msg =  "Starting pulling the docker ... \n"
+            self.log.insert(tk.END,msg)
+            self.log_file.write(msg)
+            msg = "Step 3: Docker image is up to date! \n\n"
             self.log.insert(tk.END, msg)
             # self.docker_pull.configure(image = self.checked_image)
             self.docker_pull.select()
@@ -175,40 +215,61 @@ class Validation:
             self.root.update()
             self.log_file.write(msg)
 
-        if not self.var_docker.get() and "docker \\" in log:
-            msg = "Docker image is up to date! \n"
-            self.log.insert(tk.END, msg)
-            # self.docker_pull.configure(image = self.checked_image)
-            self.docker_pull.select()
-            self.progress_bar['value'] = 70
-            self.root.update()
-            self.log_file.write(msg)
+
+        
         if "Final process status is permanentFail" in log:
-            message = "Workflow execution was unsuccessful! Please view the log file in the same directory for further information. \n \n"
+            message = "Workflow execution was unsuccessful. Please check the log file 'workflow.log' for detailed information and troubleshooting. \n\n"
             self.log.insert(tk.END,message)
+            self.log_file.write(message)
             # self.docker_pull.configure(image = self.checked_image)
             self.unmet_dep.configure(image = self.unchecked_image)
             self.docker_pull.configure(image = self.unchecked_image)
             self.success.configure(image = self.unchecked_image)
             self.root.update()
-            self.log_file.write("Error information is provided below ================================\n")
+            self.log_file.write("Error log \n")
+            msg = "==================================================\n\n"
+            self.log_file.write(msg)
             self.log_file.write(self.console_output)
             
         if "Final process status is success" in log:
-            msg = "Workflow has been executed successfully! \n"
+            msg = "Step 4: Final Message \n"
             self.log.insert(tk.END,msg)
+            self.log_file.write(msg)
+            msg = "Workflow executed successfully! \n\n"
+            self.log.insert(tk.END,msg)
+            self.log_file.write(msg)
+            msg = "==================================================\n\n"
+            self.log.insert(tk.END,msg)
+            self.log_file.write(msg)
             # self.docker_pull.configure(image = self.checked_image)
             self.unmet_dep.select()
             self.success.select()
             self.progress_bar['value'] = 100
             self.root.update()
             # self.log_file.write(log)
+
+
+            match = re.search(r'"FileOutput": {(.*?)}', log, re.DOTALL)
+            if match:
+                file_output_info = match.group(1)
+
+                # Print the extracted "FileOutput" information
+                # print('"FileOutput": {')
+                self.log_file.write('"FileOutput": {\n')
+                self.log_file.write(file_output_info)
+                self.log_file.write('}')
+                
+                # print(file_output_info)
+                # print('}')
+
+
+
         return flag 
             
 
 
     def prepare_cwl_command(self):
-        with open('README.md', 'r') as file:
+        with open(self.cwd+'/README.md', 'r') as file:
         # with open('validate_workflow-main/README.md', 'r') as file:    
             readme_content = file.read()
         cmd_search = "cwltool\s+(.*)"

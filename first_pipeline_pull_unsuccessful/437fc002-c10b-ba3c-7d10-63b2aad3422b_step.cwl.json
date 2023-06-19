@@ -1,0 +1,31 @@
+{
+  "cwlVersion": "v1.1",
+  "class": "CommandLineTool",
+  "requirements": {
+    "InlineJavascriptRequirement": {},
+    "ShellCommandRequirement": {},
+    "LoadListingRequirement": {
+      "class": "LoadListingRequirement",
+      "loadListing": "deep_listing"
+    }
+  },
+  "inputs": {
+    "ID": "string"
+  },
+  "outputs": {
+    "output": {
+      "type": "Directory",
+      "outputBinding": {
+        "loadListing": "deep_listing",
+        "glob": "*",
+        "outputEval": "${var entries = []; \nvar longDir = 'download/dat/' + (inputs.ID.split('_')[1] || '_') + '/' + (inputs.ID.split('_')[2] || '_');\nvar midDir = 'download/dat/' + (inputs.ID.split('_')[1] || '_');\nvar shortDir = 'download/dat';\nvar i = 0;\nvar addDirectories = function(currentDir, elementsSoFar) {\n    elementsSoFar.push({location:currentDir.location, basename: currentDir.basename});\n    for (var i =0; i<currentDir.listing.length;i++) {\n        if(currentDir.listing[i].class === 'Directory') {\n            addDirectories(currentDir.listing[i], elementsSoFar);\n        }\n    }\n};\nself.forEach(entry=>{\n    if(entry.class === 'Directory' && entry.basename === 'download') {\n        addDirectories(entry,entries);\n    }\n});\n\nvar dir = {class: 'Directory', path: '', basename: 'output'};\nfor (i = 0; i < entries.length; i++) { \n    if (entries[i].location.indexOf(longDir + '/') > -1) {\n        dir.path = longDir;\n        return dir;\n    }\n}\nfor (i = 0; i < entries.length; i++) { \n    if (entries[i].location.indexOf(midDir + '/') > -1) {\n        dir.path = midDir;\n        return dir;\n    }\n}\ndir.path = shortDir;\nreturn dir;}"
+      }
+    }
+  },
+  "arguments": [
+    {
+      "shellQuote": false,
+      "valueFrom": "ln -s $LEAP_CLI_DIR/leap_cli.jar\nln -s $LEAP_CLI_DIR/.sample_cache.json\njava -jar leap_cli.jar download -p $(inputs.ID.split(\"_\")[0]) -i $(inputs.ID.split(\"_\")[1]) -d ./download"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "cwlVersion": "v1.1",
+  "class": "CommandLineTool",
+  "requirements": {
+    "InlineJavascriptRequirement": {},
+    "DockerRequirement": {
+      "dockerPull": "akre96/ucla_pipeline_1:latest"
+    },
+    "ShellCommandRequirement": {},
+    "InitialWorkDirRequirement": {
+      "listing": [
+        {
+          "entry": "$(inputs['Input Files'])",
+          "writable": true
+        }
+      ]
+    }
+  },
+  "inputs": {
+    "Input Files": "Directory"
+  },
+  "outputs": {
+    "FileOutput": {
+      "type": "File",
+      "outputBinding": {
+        "glob": "$(inputs['Input Files'].path)/paee_sleep_W0toW1.csv"
+      }
+    }
+  },
+  "arguments": [
+    {
+      "shellQuote": false,
+      "valueFrom": "ln -s $(inputs['Input Files'].path) input_files\nbash /app/preproc_hk_data.sh $(inputs['Input Files'].path)"
+    }
+  ]
+}

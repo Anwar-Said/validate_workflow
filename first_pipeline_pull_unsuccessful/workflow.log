@@ -1,0 +1,314 @@
+Workflow Validation Report 
+Date: 2023-06-19 12:28:31.022632
+
+==================================================
+
+Step 1: Local environment 
+Starting execution of Step 1...
+Step 1: Local environment successfully configured 
+
+Step 2: Download data 
+Starting data download... 
+Step 2: Data download operation completed! 
+
+Step 3: Pull docker 
+Starting pulling the docker ... 
+Step 3: Docker image is up to date! 
+
+Workflow execution was unsuccessful. Please check the log file 'workflow.log' for detailed information and troubleshooting. 
+
+Error log 
+==================================================
+
+[1;30mINFO[0m /usr/local/bin/cwltool 3.1.20230302145532
+[1;30mINFO[0m Resolved 'first_pipeline_pull.cwl.json' to 'file:///home/anwar/projects/validate_workflow/first_pipeline_pull_unsuccessful/first_pipeline_pull.cwl.json'
+[1;30mWARNING[0m [33m437fc002-c10b-ba3c-7d10-63b2aad3422b_step.cwl.json:21:9: JSHINT: self.forEach(entry=>{
+437fc002-c10b-ba3c-7d10-63b2aad3422b_step.cwl.json:21:9: JSHINT:                   ^
+437fc002-c10b-ba3c-7d10-63b2aad3422b_step.cwl.json:21:9: JSHINT: W119: 'arrow function syntax (=>)' is only available in ES6. CWL only supports ES5.1[0m
+[1;30mWARNING[0m [33mWorkflow checker warning:
+first_pipeline_pull.cwl.json:6:7:  Source 'PDPiD' of type ["null", "string"] may be incompatible
+first_pipeline_pull.cwl.json:30:9:   with sink 'ID' of type "string"[0m
+[1;30mINFO[0m [workflow ] start
+[1;30mINFO[0m [workflow ] starting step FetchFromPDP
+[1;30mINFO[0m [step FetchFromPDP] start
+[1;30mINFO[0m [job FetchFromPDP] /home/anwar/projects/validate_workflow/first_pipeline_pull_unsuccessfult3t_8uc6$ /bin/sh \
+    -c \
+    ln -s $LEAP_CLI_DIR/leap_cli.jar
+ln -s $LEAP_CLI_DIR/.sample_cache.json
+java -jar leap_cli.jar download -p 65ad77dc-4139-41d3-ad82-85c8ed64ad77 -i 4 -d ./download
+Saving metadata to /home/anwar/projects/validate_workflow/first_pipeline_pull_unsuccessfult3t_8uc6/download/metadata/4/metadata.json
+Download Command Invoked.
+=====================================
+Downloading records from repository 65ad77dc-4139-41d3-ad82-85c8ed64ad77
+Waiting for transfer to start.... 
+Download started.. 
+Downloading file: /home/anwar/projects/validate_workflow/first_pipeline_pull_unsuccessfult3t_8uc6/download/dat/HK-paee_W0toW1-3.csv
+Remote File size 8034858
+Starting Download..
+Finished Downloading file: /home/anwar/projects/validate_workflow/first_pipeline_pull_unsuccessfult3t_8uc6/download/dat/HK-paee_W0toW1-3.csv
+Downloading file: /home/anwar/projects/validate_workflow/first_pipeline_pull_unsuccessfult3t_8uc6/download/dat/OPTIMA_DATA_2023-02-04_1022.csv
+Remote File size 2379776
+Starting Download..
+Finished Downloading file: /home/anwar/projects/validate_workflow/first_pipeline_pull_unsuccessfult3t_8uc6/download/dat/OPTIMA_DATA_2023-02-04_1022.csv
+Downloading file: /home/anwar/projects/validate_workflow/first_pipeline_pull_unsuccessfult3t_8uc6/download/dat/survey_responses_2.csv
+Remote File size 1030385
+Starting Download..
+Finished Downloading file: /home/anwar/projects/validate_workflow/first_pipeline_pull_unsuccessfult3t_8uc6/download/dat/survey_responses_2.csv
+Downloading file: /home/anwar/projects/validate_workflow/first_pipeline_pull_unsuccessfult3t_8uc6/download/dat/paee_sleep_W0toW1.csv
+Remote File size 3194
+Starting Download..
+Finished Downloading file: /home/anwar/projects/validate_workflow/first_pipeline_pull_unsuccessfult3t_8uc6/download/dat/paee_sleep_W0toW1.csv
+Downloading file: /home/anwar/projects/validate_workflow/first_pipeline_pull_unsuccessfult3t_8uc6/download/dat/OPTIMA_R_2023-02-04_1022.r
+Remote File size 351395
+Starting Download..
+Finished Downloading file: /home/anwar/projects/validate_workflow/first_pipeline_pull_unsuccessfult3t_8uc6/download/dat/OPTIMA_R_2023-02-04_1022.r
+Downloading file: /home/anwar/projects/validate_workflow/first_pipeline_pull_unsuccessfult3t_8uc6/download/dat/HK-paee_W0toW1-1.csv
+Remote File size 9155321
+Starting Download..
+Finished Downloading file: /home/anwar/projects/validate_workflow/first_pipeline_pull_unsuccessfult3t_8uc6/download/dat/HK-paee_W0toW1-1.csv
+Downloading file: /home/anwar/projects/validate_workflow/first_pipeline_pull_unsuccessfult3t_8uc6/download/dat/HK-paee_W0toW1-2.csv
+Remote File size 7147180
+Starting Download..
+Finished Downloading file: /home/anwar/projects/validate_workflow/first_pipeline_pull_unsuccessfult3t_8uc6/download/dat/HK-paee_W0toW1-2.csv
+Downloading file: /home/anwar/projects/validate_workflow/first_pipeline_pull_unsuccessfult3t_8uc6/download/dat/HK-sleep_W0toW1.csv
+Remote File size 1154114
+Starting Download..
+Finished Downloading file: /home/anwar/projects/validate_workflow/first_pipeline_pull_unsuccessfult3t_8uc6/download/dat/HK-sleep_W0toW1.csv
+=====================================
+Download Operation Completed
+=====================================
+[1;30mINFO[0m [job FetchFromPDP] Max memory used: 414MiB
+[1;30mINFO[0m [job FetchFromPDP] completed success
+[1;30mINFO[0m [step FetchFromPDP] completed success
+[1;30mINFO[0m [workflow ] starting step Preproccess HealthKit
+[1;30mINFO[0m [step Preproccess HealthKit] start
+[1;30mWARNING[0m [33mYou have specified '--preserve-environment={LEAP_CLI_DIR}' while running a container which will override variables set in the container. This may break the container, be non-portable, and/or affect reproducibility.[0m
+[1;30mINFO[0m [job Preproccess HealthKit] /home/anwar/projects/validate_workflow/first_pipeline_pull_unsuccessfuldgwduqxn$ docker \
+    run \
+    -i \
+    --mount=type=bind,source=/home/anwar/projects/validate_workflow/first_pipeline_pull_unsuccessfuldgwduqxn,target=/nZkieW \
+    --mount=type=bind,source=/home/anwar/projects/validate_workflow/first_pipeline_pull_unsuccessful25tqioqj,target=/tmp \
+    --workdir=/nZkieW \
+    --net=none \
+    --rm \
+    --cidfile=/home/anwar/projects/validate_workflow/first_pipeline_pull_unsuccessfulyo6zm4c8/20230619122844-734678.cid \
+    --env=LEAP_CLI_DIR=/home/anwar/leap_cli \
+    --env=TMPDIR=/tmp \
+    --env=HOME=/nZkieW \
+    akre96/ucla_pipeline_1:latest \
+    /bin/sh \
+    -c \
+    ln -s /nZkieW/output input_files
+bash /app/preproc_hk_data.sh /nZkieW/output
+Loading PAEE from: ['/nZkieW/output/HK-paee_W0toW1-1.csv', '/nZkieW/output/HK-paee_W0toW1-2.csv', '/nZkieW/output/HK-paee_W0toW1-3.csv']
+PAEE SUMMARY:
+       activeEnergyBurned_mean_W0toW1  ...  activeEnergyBurned_skew_W0toW1
+count                            14.0  ...                            11.0
+mean                           1322.0  ...                            -0.0
+std                             485.0  ...                             1.0
+min                             560.0  ...                            -1.0
+25%                             979.0  ...                            -1.0
+50%                            1331.0  ...                            -0.0
+75%                            1717.0  ...                             1.0
+max                            2178.0  ...                             2.0
+
+[8 rows x 7 columns]
+Loading Sleep from: /nZkieW/output/HK-sleep_W0toW1.csv
+SLEEP SUMMARY:
+       totalSleepHours_mean_W0toW1  ...  totalSleepHours_skew_W0toW1
+count                         15.0  ...                         14.0
+mean                          10.0  ...                          0.0
+std                            4.0  ...                          1.0
+min                            4.0  ...                         -1.0
+25%                            6.0  ...                         -1.0
+50%                            8.0  ...                         -0.0
+75%                           14.0  ...                          1.0
+max                           16.0  ...                          2.0
+
+[8 rows x 7 columns]
+Saving to /nZkieW/output/paee_sleep_W0toW1.csv
+[1;30mINFO[0m [job Preproccess HealthKit] Max memory used: 0MiB
+[1;30mINFO[0m [job Preproccess HealthKit] completed success
+[1;30mINFO[0m [step Preproccess HealthKit] completed success
+[1;30mINFO[0m [workflow ] starting step RunModel
+[1;30mINFO[0m [step RunModel] start
+[1;30mWARNING[0m [33mYou have specified '--preserve-environment={LEAP_CLI_DIR}' while running a container which will override variables set in the container. This may break the container, be non-portable, and/or affect reproducibility.[0m
+Expecting value: line 1 column 1 (char 0)
+script was:
+01 "use strict";
+02 var inputs = {
+03     "HK_data": {
+04         "location": "file:///home/anwar/projects/validate_workflow/first_pipeline_pull_unsuccessfuldgwduqxn/output/paee_sleep_W0toW1.csv",
+05         "basename": "paee_sleep_W0toW1.csv",
+06         "nameroot": "paee_sleep_W0toW1",
+07         "nameext": ".csv",
+08         "class": "File",
+09         "checksum": "sha1$b9050c29903fa50811582840f9e8c96e1d2b06dd",
+10         "size": 3194,
+11         "http://commonwl.org/cwltool#generation": 0,
+12         "path": "/nZkieW/paee_sleep_W0toW1.csv",
+13         "dirname": "/nZkieW"
+14     },
+15     "Input Data": {
+16         "class": "Directory",
+17         "basename": "output",
+18         "location": "file:///home/anwar/projects/validate_workflow/first_pipeline_pull_unsuccessfult3t_8uc6/download/dat",
+19         "path": "/nZkieW/output",
+20         "dirname": "/nZkieW"
+21     }
+22 };
+23 var self = null;
+24 var runtime = {
+25     "cores": 1,
+26     "ram": 256,
+27     "tmpdirSize": 1024,
+28     "outdirSize": 1024,
+29     "tmpdir": "/tmp",
+30     "outdir": "/nZkieW"
+31 };
+32 (function(){return ((inputs['Input Files'].path));})()
+stdout was: ''
+stderr was: 'evalmachine.<anonymous>:32
+(function(){return ((inputs['Input Files'].path));})()
+                                           ^
+
+TypeError: Cannot read property 'path' of undefined
+    at evalmachine.<anonymous>:32:44
+    at evalmachine.<anonymous>:32:53
+    at Script.runInContext (vm.js:130:18)
+    at Script.runInNewContext (vm.js:135:17)
+    at Object.runInNewContext (vm.js:302:38)
+    at Socket.<anonymous> ([eval]:11:57)
+    at Socket.emit (events.js:314:20)
+    at addChunk (_stream_readable.js:297:12)
+    at readableAddChunk (_stream_readable.js:268:11)
+    at Socket.Readable.push (_stream_readable.js:213:10)'
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/cwl_utils/sandboxjs.py", line 478, in eval
+    return cast(CWLOutputType, json.loads(stdout))
+  File "/usr/lib/python3.10/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib/python3.10/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib/python3.10/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/cwl_utils/expression.py", line 311, in do_eval
+    return interpolate(
+  File "/usr/local/lib/python3.10/dist-packages/cwl_utils/expression.py", line 216, in interpolate
+    e = evaluator(
+  File "/usr/local/lib/python3.10/dist-packages/cwl_utils/expression.py", line 162, in evaluator
+    return cast(CWLOutputType, js_engine.eval(ex, jslib, **kwargs))
+  File "/usr/local/lib/python3.10/dist-packages/cwl_utils/sandboxjs.py", line 480, in eval
+    raise JavascriptException(
+cwl_utils.errors.JavascriptException: Expecting value: line 1 column 1 (char 0)
+script was:
+01 "use strict";
+02 var inputs = {
+03     "HK_data": {
+04         "location": "file:///home/anwar/projects/validate_workflow/first_pipeline_pull_unsuccessfuldgwduqxn/output/paee_sleep_W0toW1.csv",
+05         "basename": "paee_sleep_W0toW1.csv",
+06         "nameroot": "paee_sleep_W0toW1",
+07         "nameext": ".csv",
+08         "class": "File",
+09         "checksum": "sha1$b9050c29903fa50811582840f9e8c96e1d2b06dd",
+10         "size": 3194,
+11         "http://commonwl.org/cwltool#generation": 0,
+12         "path": "/nZkieW/paee_sleep_W0toW1.csv",
+13         "dirname": "/nZkieW"
+14     },
+15     "Input Data": {
+16         "class": "Directory",
+17         "basename": "output",
+18         "location": "file:///home/anwar/projects/validate_workflow/first_pipeline_pull_unsuccessfult3t_8uc6/download/dat",
+19         "path": "/nZkieW/output",
+20         "dirname": "/nZkieW"
+21     }
+22 };
+23 var self = null;
+24 var runtime = {
+25     "cores": 1,
+26     "ram": 256,
+27     "tmpdirSize": 1024,
+28     "outdirSize": 1024,
+29     "tmpdir": "/tmp",
+30     "outdir": "/nZkieW"
+31 };
+32 (function(){return ((inputs['Input Files'].path));})()
+stdout was: ''
+stderr was: 'evalmachine.<anonymous>:32
+(function(){return ((inputs['Input Files'].path));})()
+                                           ^
+
+TypeError: Cannot read property 'path' of undefined
+    at evalmachine.<anonymous>:32:44
+    at evalmachine.<anonymous>:32:53
+    at Script.runInContext (vm.js:130:18)
+    at Script.runInNewContext (vm.js:135:17)
+    at Object.runInNewContext (vm.js:302:38)
+    at Socket.<anonymous> ([eval]:11:57)
+    at Socket.emit (events.js:314:20)
+    at addChunk (_stream_readable.js:297:12)
+    at readableAddChunk (_stream_readable.js:268:11)
+    at Socket.Readable.push (_stream_readable.js:213:10)'
+
+[1;30mERROR[0m [31mException on step 'RunModel'[0m
+[1;30mERROR[0m [31m[step RunModel] Cannot make job: 62b96ac7-4062-3f3b-5879-283fe7625b7b_step.cwl.json:38:7: Expression evaluation error:
+62b96ac7-4062-3f3b-5879-283fe7625b7b_step.cwl.json:38:7: Expecting value: line 1 column 1 (char 0)
+62b96ac7-4062-3f3b-5879-283fe7625b7b_step.cwl.json:38:7: script was:
+62b96ac7-4062-3f3b-5879-283fe7625b7b_step.cwl.json:38:7: 01 "use strict";
+62b96ac7-4062-3f3b-5879-283fe7625b7b_step.cwl.json:38:7: 02 var inputs = {
+62b96ac7-4062-3f3b-5879-283fe7625b7b_step.cwl.json:38:7: 03     "HK_data": {
+62b96ac7-4062-3f3b-5879-283fe7625b7b_step.cwl.json:38:7: 04         "location": "file:///home/anwar/projects/validate_workflow/first_pipeline_pull_unsuccessfuldgwduqxn/output/paee_sleep_W0toW1.csv",
+62b96ac7-4062-3f3b-5879-283fe7625b7b_step.cwl.json:38:7: 05         "basename": "paee_sleep_W0toW1.csv",
+62b96ac7-4062-3f3b-5879-283fe7625b7b_step.cwl.json:38:7: 06         "nameroot": "paee_sleep_W0toW1",
+62b96ac7-4062-3f3b-5879-283fe7625b7b_step.cwl.json:38:7: 07         "nameext": ".csv",
+62b96ac7-4062-3f3b-5879-283fe7625b7b_step.cwl.json:38:7: 08         "class": "File",
+62b96ac7-4062-3f3b-5879-283fe7625b7b_step.cwl.json:38:7: 09         "checksum": "sha1$b9050c29903fa50811582840f9e8c96e1d2b06dd",
+62b96ac7-4062-3f3b-5879-283fe7625b7b_step.cwl.json:38:7: 10         "size": 3194,
+62b96ac7-4062-3f3b-5879-283fe7625b7b_step.cwl.json:38:7: 11         "http://commonwl.org/cwltool#generation": 0,
+62b96ac7-4062-3f3b-5879-283fe7625b7b_step.cwl.json:38:7: 12         "path": "/nZkieW/paee_sleep_W0toW1.csv",
+62b96ac7-4062-3f3b-5879-283fe7625b7b_step.cwl.json:38:7: 13         "dirname": "/nZkieW"
+62b96ac7-4062-3f3b-5879-283fe7625b7b_step.cwl.json:38:7: 14     },
+62b96ac7-4062-3f3b-5879-283fe7625b7b_step.cwl.json:38:7: 15     "Input Data": {
+62b96ac7-4062-3f3b-5879-283fe7625b7b_step.cwl.json:38:7: 16         "class": "Directory",
+62b96ac7-4062-3f3b-5879-283fe7625b7b_step.cwl.json:38:7: 17         "basename": "output",
+62b96ac7-4062-3f3b-5879-283fe7625b7b_step.cwl.json:38:7: 18         "location": "file:///home/anwar/projects/validate_workflow/first_pipeline_pull_unsuccessfult3t_8uc6/download/dat",
+62b96ac7-4062-3f3b-5879-283fe7625b7b_step.cwl.json:38:7: 19         "path": "/nZkieW/output",
+62b96ac7-4062-3f3b-5879-283fe7625b7b_step.cwl.json:38:7: 20         "dirname": "/nZkieW"
+62b96ac7-4062-3f3b-5879-283fe7625b7b_step.cwl.json:38:7: 21     }
+62b96ac7-4062-3f3b-5879-283fe7625b7b_step.cwl.json:38:7: 22 };
+62b96ac7-4062-3f3b-5879-283fe7625b7b_step.cwl.json:38:7: 23 var self = null;
+62b96ac7-4062-3f3b-5879-283fe7625b7b_step.cwl.json:38:7: 24 var runtime = {
+62b96ac7-4062-3f3b-5879-283fe7625b7b_step.cwl.json:38:7: 25     "cores": 1,
+62b96ac7-4062-3f3b-5879-283fe7625b7b_step.cwl.json:38:7: 26     "ram": 256,
+62b96ac7-4062-3f3b-5879-283fe7625b7b_step.cwl.json:38:7: 27     "tmpdirSize": 1024,
+62b96ac7-4062-3f3b-5879-283fe7625b7b_step.cwl.json:38:7: 28     "outdirSize": 1024,
+62b96ac7-4062-3f3b-5879-283fe7625b7b_step.cwl.json:38:7: 29     "tmpdir": "/tmp",
+62b96ac7-4062-3f3b-5879-283fe7625b7b_step.cwl.json:38:7: 30     "outdir": "/nZkieW"
+62b96ac7-4062-3f3b-5879-283fe7625b7b_step.cwl.json:38:7: 31 };
+62b96ac7-4062-3f3b-5879-283fe7625b7b_step.cwl.json:38:7: 32 (function(){return ((inputs['Input Files'].path));})()
+62b96ac7-4062-3f3b-5879-283fe7625b7b_step.cwl.json:38:7: stdout was: ''
+62b96ac7-4062-3f3b-5879-283fe7625b7b_step.cwl.json:38:7: stderr was: 'evalmachine.<anonymous>:32
+62b96ac7-4062-3f3b-5879-283fe7625b7b_step.cwl.json:38:7: (function(){return ((inputs['Input Files'].path));})()
+62b96ac7-4062-3f3b-5879-283fe7625b7b_step.cwl.json:38:7:                                            ^
+62b96ac7-4062-3f3b-5879-283fe7625b7b_step.cwl.json:38:7: 
+62b96ac7-4062-3f3b-5879-283fe7625b7b_step.cwl.json:38:7: TypeError: Cannot read property 'path' of undefined
+62b96ac7-4062-3f3b-5879-283fe7625b7b_step.cwl.json:38:7:     at evalmachine.<anonymous>:32:44
+62b96ac7-4062-3f3b-5879-283fe7625b7b_step.cwl.json:38:7:     at evalmachine.<anonymous>:32:53
+62b96ac7-4062-3f3b-5879-283fe7625b7b_step.cwl.json:38:7:     at Script.runInContext (vm.js:130:18)
+62b96ac7-4062-3f3b-5879-283fe7625b7b_step.cwl.json:38:7:     at Script.runInNewContext (vm.js:135:17)
+62b96ac7-4062-3f3b-5879-283fe7625b7b_step.cwl.json:38:7:     at Object.runInNewContext (vm.js:302:38)
+62b96ac7-4062-3f3b-5879-283fe7625b7b_step.cwl.json:38:7:     at Socket.<anonymous> ([eval]:11:57)
+62b96ac7-4062-3f3b-5879-283fe7625b7b_step.cwl.json:38:7:     at Socket.emit (events.js:314:20)
+62b96ac7-4062-3f3b-5879-283fe7625b7b_step.cwl.json:38:7:     at addChunk (_stream_readable.js:297:12)
+62b96ac7-4062-3f3b-5879-283fe7625b7b_step.cwl.json:38:7:     at readableAddChunk (_stream_readable.js:268:11)
+62b96ac7-4062-3f3b-5879-283fe7625b7b_step.cwl.json:38:7:     at Socket.Readable.push (_stream_readable.js:213:10)'[0m
+[1;30mINFO[0m [workflow ] completed permanentFail
+{
+    "FileOutput": null
+}[1;30mWARNING[0m [33mFinal process status is permanentFail[0m
