@@ -1,0 +1,22 @@
+Workflow Validation Report 
+Date: 2023-08-21 10:53:01.629162
+
+==================================================
+
+Step 1: Local environment 
+Starting execution of Step 1...
+Step 1: Local environment successfully configured 
+
+Step 2: Download data 
+Starting data download... 
+Step 2: Data download operation completed! 
+
+Step 3: Pull docker 
+Starting pulling the docker ... 
+Step 3: Docker image is up to date! 
+
+Step 4: Final Message 
+Workflow executed successfully! 
+
+==================================================
+

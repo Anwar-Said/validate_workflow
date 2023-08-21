@@ -1,0 +1,57 @@
+{
+  "cwlVersion": "v1.1",
+  "class": "CommandLineTool",
+  "requirements": {
+    "InlineJavascriptRequirement": {},
+    "DockerRequirement": {
+      "dockerPull": "aarthir239/get_vst_from_counts:latest"
+    },
+    "ShellCommandRequirement": {},
+    "InitialWorkDirRequirement": {
+      "listing": [
+        {
+          "entry": "$(inputs.arg2)",
+          "writable": true
+        },
+        {
+          "entry": "$(inputs.arg1)",
+          "writable": true
+        }
+      ]
+    }
+  },
+  "inputs": {
+    "arg2": {
+      "type": "File",
+      "inputBinding": {
+        "position": 2
+      }
+    },
+    "arg1": {
+      "type": "File",
+      "inputBinding": {
+        "position": 1
+      }
+    }
+  },
+  "outputs": {
+    "result": {
+      "type": "File",
+      "outputBinding": {
+        "glob": "vst_counts.csv"
+      }
+    },
+    "metadata": {
+      "type": "File",
+      "outputBinding": {
+        "glob": "metadata.txt"
+      }
+    }
+  },
+  "arguments": [
+    {
+      "shellQuote": false,
+      "valueFrom": "ln -s /home/* ./\nRscript get_vst.R"
+    }
+  ]
+}

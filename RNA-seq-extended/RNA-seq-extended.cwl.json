@@ -1,0 +1,70 @@
+{
+  "cwlVersion": "v1.1",
+  "class": "Workflow",
+  "inputs": {
+    "content": {
+      "type": "string?",
+      "default": "ba1a155e-4990-4854-b7ef-90610117f5d4_10_0"
+    }
+  },
+  "outputs": {
+    "genes": {
+      "type": "File",
+      "outputSource": "VST-to-Genes/whole_blood_responder_vs_control_eff.csv"
+    }
+  },
+  "steps": {
+    "Counts-to-VST": {
+      "run": "fc9a5cc3-5fb3-33c0-6478-08fbd5beb05e_step.cwl.json",
+      "in": {
+        "arg2": "GetFile-RAW-Counts/output",
+        "arg1": "GetFile-metadata/output"
+      },
+      "out": [
+        "metadata",
+        "result"
+      ]
+    },
+    "VST-to-Genes": {
+      "run": "2e7b3166-b7e5-4ff9-e095-5364ec18c651_step.cwl.json",
+      "in": {
+        "arg1": "Counts-to-VST/metadata",
+        "arg2": "Counts-to-VST/result"
+      },
+      "out": [
+        "whole_blood_responder_vs_control_eff.csv"
+      ]
+    },
+    "GetFile-metadata": {
+      "run": "ed880507-9ee7-3ea5-7f66-b6f7c3c9ebeb_step.cwl.json",
+      "in": {
+        "input": "FetchFromPDP/output"
+      },
+      "out": [
+        "output"
+      ]
+    },
+    "GetFile-RAW-Counts": {
+      "run": "dd7f1990-d0ad-e6bb-84cd-6581bb6b73c8_step.cwl.json",
+      "in": {
+        "input": "FetchFromPDP/output"
+      },
+      "out": [
+        "output"
+      ]
+    },
+    "FetchFromPDP": {
+      "run": "189287e8-081d-12fb-7251-7811977c27dd_step.cwl.json",
+      "in": {
+        "ID": "content"
+      },
+      "out": [
+        "output"
+      ]
+    }
+  },
+  "requirements": {
+    "InlineJavascriptRequirement": {},
+    "SubworkflowFeatureRequirement": {}
+  }
+}

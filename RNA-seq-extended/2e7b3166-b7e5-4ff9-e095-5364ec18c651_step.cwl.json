@@ -1,0 +1,41 @@
+{
+  "cwlVersion": "v1.1",
+  "class": "CommandLineTool",
+  "requirements": {
+    "InlineJavascriptRequirement": {},
+    "DockerRequirement": {
+      "dockerPull": "aarthir239/rnaseq:latest"
+    },
+    "ShellCommandRequirement": {},
+    "InitialWorkDirRequirement": {
+      "listing": [
+        {
+          "entry": "$(inputs['arg2'])",
+          "writable": true
+        },
+        {
+          "entry": "$(inputs['arg1'])",
+          "writable": true
+        }
+      ]
+    }
+  },
+  "inputs": {
+    "arg2": "File",
+    "arg1": "File"
+  },
+  "outputs": {
+    "whole_blood_responder_vs_control_eff.csv": {
+      "type": "File",
+      "outputBinding": {
+        "glob": "whole_blood_responder_vs_control_eff.csv"
+      }
+    }
+  },
+  "arguments": [
+    {
+      "shellQuote": false,
+      "valueFrom": "ln -s $(inputs['arg1'].path) metadata.txt\nln -s $(inputs['arg2'].path) vst_counts.csv\nln -s /app/* ./\npython app.py"
+    }
+  ]
+}

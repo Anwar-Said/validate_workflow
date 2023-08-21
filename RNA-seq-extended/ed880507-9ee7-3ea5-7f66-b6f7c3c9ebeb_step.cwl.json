@@ -1,0 +1,28 @@
+{
+  "cwlVersion": "v1.1",
+  "class": "CommandLineTool",
+  "baseCommand": "echo",
+  "requirements": {
+    "InlineJavascriptRequirement": {},
+    "LoadListingRequirement": {
+      "class": "LoadListingRequirement",
+      "loadListing": "deep_listing"
+    },
+    "InitialWorkDirRequirement": {
+      "listing": "$(inputs.input.listing)"
+    }
+  },
+  "inputs": {
+    "input": "Directory"
+  },
+  "outputs": {
+    "output": {
+      "type": "File",
+      "outputBinding": {
+        "loadListing": "deep_listing",
+        "glob": "*",
+        "outputEval": "${var entries = [];\nvar pattern = /metadata.txt/;\nvar i = 0;\nvar collectFiles = function(currentLevel, filesSoFar) {\n    if(Array.isArray(currentLevel)) {\n        for(var i=0; i<currentLevel.length; i++) {\n            if(currentLevel[i].class === 'File') {\n                filesSoFar.push(currentLevel[i]);\n            } else if(currentLevel[i].class === 'Directory') {\n                collectFiles(currentLevel[i].listing, filesSoFar);\n            }\n        }\n    } else if (currentLevel.hasOwnProperty('listing')) {\n        for(var i=0; i<currentLevel.listing.length; i++) {\n            if(currentLevel.listing[i].class === 'File') {\n                filesSoFar.push(currentLevel.listing[i]);\n            } else if(currentLevel.listing[i].class === 'Directory') {\n                collectFiles(currentLevel.listing[i].listing, filesSoFar);\n            }\n        }\n    }\n};\n\ncollectFiles(self, entries);\nvar output = [];\nfor (var i=0; i<entries.length; i++) {\n    if(pattern.test(entries[i].location)) {\n        output.push(entries[i]);\n    }\n}\n\nif(false) {\n    return output;\n} else {\n    return output[0] || null;\n}}"
+      }
+    }
+  }
+}
